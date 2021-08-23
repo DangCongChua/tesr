@@ -1,0 +1,103 @@
+{
+    "language": "vi",
+    "keyActive": "26e3ff7e699b0235f0cf799e282542762ac6785264aa83b484f89b0faff9cc64a984935d46a8872b70d1d4e69b0936d8",
+    "DeveloperMode": true,
+    "autoCreateDB": true,
+    "allowInbox": true,
+    "autoClean": false,
+    "commandDisabled": [
+        "shortcut.js"
+    ],
+    "eventDisabled": [],
+    "EMAIL": "",
+    "PASSWORD": "",
+    "OTPKEY": "",
+    "BOTNAME": "Bot so~cute -,-",
+    "PREFIX": "!",
+    "ADMINBOT": [
+        "100005770388324",
+        "USERID2",
+        "100070066745874"
+    ],
+    "DATABASE": {
+        "sqlite": {
+            "storage": "data.sqlite"
+        }
+    },
+    "APPSTATEPATH": "appstate.json",
+    "FCAOption": {
+        "forceLogin": true,
+        "listenEvents": true,
+        "pauseLog": true,
+        "logLevel": "error",
+        "selfListen": true,
+        "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36"
+    },
+    "version": "1.2.14",
+    "checktt": {
+        "maxColumn": 10
+    },
+    "info": {
+        "APIKEY": "531532681600063|PZKvEhQ2eQ_XGkh5GlhMv6HBS60"
+    },
+    "covid": {
+        "APIKEY": ""
+    },
+    "daily": {
+        "cooldownTime": 43200000,
+        "rewardCoin": 500
+    },
+    "help": {
+        "autoUnsend": true,
+        "delayUnsend": 60
+    },
+    "hitbutt": {
+        "APIKEY": ""
+    },
+    "img": {
+        "APIKEY": ""
+    },
+    "linkword": {
+        "APIKEY": ""
+    },
+    "math": {
+        "WOLFRAM": "T8J8YV-H265UQ762K"
+    },
+    "rankup": {
+        "autoUnsend": true,
+        "unsendMessageAfter": 5
+    },
+    "tenngaunhien": {
+        "APIKEY": "mi451266190"
+    },
+    "shortlink": {
+        "bitlyAPI": ""
+    },
+    "sim": {
+        "APIKEY": "MEWbmd1eWVuZHV5bGFtO2R1eWxhbTIwMDIubmRAZ21haWwuY29t"
+    },
+    "sing": {
+        "YOUTUBE_API": "AIzaSyDPeYxUaAlpfrn6QgGaKnfLyGoqHp5fyGY",
+        "SOUNDCLOUD_API": "M4TSyS6eV0AcMynXkA3qQASGcOFQTWub"
+    },
+    "slap": {
+        "APIKEY": ""
+    },
+    "sortword": {
+        "APIKEY": ""
+    },
+    "video": {
+        "YOUTUBE_API": "AIzaSyDEE1-zZSRVI8lTaQOVsIAQFgL-_BJKvhk"
+    },
+    "weather": {
+        "OPEN_WEATHER": "081c82065cfee62cb7988ddf90914bdd"
+    },
+    "adminUpdate": {
+        "autoUnsend": true,
+        "sendNoti": true,
+        "timeToUnsend": 10
+    },
+    "log": {
+        "enable": true
+    }
+}

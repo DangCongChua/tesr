@@ -1,11 +1,11 @@
-﻿module.exports.config = {
+module.exports.config = {
 	name: "rank",
 	version: "1.0.0",
 	hasPermssion: 0,
-	credits: "CataliCS",
+	credits: "Siêu Đáng Yêu",
 	description: "Lấy rank hiện tại của bạn trên hệ thống bot kèm khung theo level của bạn, remake rank_card from canvacord",
-	commandCategory: "Box-chat",
-	cooldowns: 20,
+	commandCategory: "Nhóm",
+	cooldowns: 5,
 	dependencies: {
 		"fs-extra": "",
 		"path": "",
@@ -14,6 +14,15 @@
 		"canvas": ""
 	}
 };
+//random color 
+function getRandomColor() {
+  	var letters = '0123456789ABCDEF';
+ 	var color = '#';
+  	for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
 
 module.exports.makeRankCard = async (data) => {    
     /*
@@ -41,10 +50,14 @@ module.exports.makeRankCard = async (data) => {
 		weight: "bold",
 		style: "normal"
 	});
-
+//random rankcard by Siêu Đáng Yêu ,png by ngô đức hiển(xin vui lòng giữ credit),code by quang thái
+//sử dụng bao nhiêu cái chỉnh ở dòng 57 (số ảnh) và ảnh phải ở định dạng.png đặt tên rankcard(123)
 	const pathCustom = path.resolve(__dirname, "cache", "customrank");
 	var customDir = fs.readdirSync(pathCustom);
-	var dirImage = __root + "/rankcard.png";
+	let random = Math.floor(Math.random() * 7) + 1;
+	    var dirImage = __root + "/rankcard" + random + ".png";
+
+
 	customDir = customDir.map(item => item.replace(/\.png/g, ""));
 
 	for (singleLimit of customDir) {
@@ -81,40 +94,37 @@ module.exports.makeRankCard = async (data) => {
 	ctx.drawImage(rankCard, 0, 0, canvas.width, canvas.height);
 	ctx.drawImage(await Canvas.loadImage(avatar), 45, 50, 180, 180);
 
-	ctx.font = `bold 50px Manrope`;
-	ctx.fillStyle = "#000000";
+	ctx.font = `bold 36px Manrope`;
+	ctx.fillStyle = getRandomColor();
 	ctx.textAlign = "start";
-	ctx.fillText(`${name} ^o^`, 270, 80);
+	ctx.fillText(name, 270, 164);
 	ctx.font = `36px Manrope`;
-	ctx.fillStyle = "#FFFFFF";
+	ctx.fillStyle = getRandomColor();
 	ctx.textAlign = "center";
 
 	ctx.font = `bold 32px Manrope`;
-	ctx.fillStyle = "#FF99FF";
+	ctx.fillStyle = getRandomColor();
 	ctx.textAlign = "end";
-	ctx.fillText(level, 465 - 60, 82);
-	ctx.fillStyle = "#FFFFFF";
-	ctx.fillText("Level.", 464 - 55 - ctx.measureText(level).width - 10, 130);
+	ctx.fillText(level, 934 - 55, 82);
+	ctx.fillStyle = getRandomColor();
+	ctx.fillText("Lv.", 934 - 55 - ctx.measureText(level).width - 10, 82);
 
 	ctx.font = `bold 32px Manrope`;
-	ctx.fillStyle = "#FFFFFF";
+	ctx.fillStyle = getRandomColor();
 	ctx.textAlign = "end";
 	ctx.fillText(rank, 934 - 55 - ctx.measureText(level).width - 16 - ctx.measureText(`Lv.`).width - 25, 82);
-	ctx.fillStyle = "#FF0044";
+	ctx.fillStyle = getRandomColor();
 	ctx.fillText("#", 934 - 55 - ctx.measureText(level).width - 16 - ctx.measureText(`Lv.`).width - 16 - ctx.measureText(rank).width - 16, 82);
 
 	ctx.font = `bold 26px Manrope`;
-	ctx.fillStyle = "#FF0055";
+	ctx.fillStyle = getRandomColor();
 	ctx.textAlign = "start";
 	ctx.fillText("/ " + expNextLevel, 710 + ctx.measureText(expCurrent).width + 10, 164);
-	ctx.font = `bold 26px Manrope`;
-	ctx.fillStyle = "#FF0055";
-	ctx.textAlign = "start";
-	ctx.fillText("exp " + expNextLevel, 710 + ctx.measureText(expCurrent).width + 10, 164);
-	ctx.fillStyle = "#FF0055";
-	ctx.fillText(expCurrent, 265, 164);
+	ctx.fillStyle = getRandomColor();
+	ctx.fillText(expCurrent, 710, 164);
+
 	ctx.beginPath();
-	ctx.fillStyle = "#4283FF";
+	ctx.fillStyle = getRandomColor();
 	ctx.arc(257 + 18.5, 147.5 + 18.5 + 36.25, 18.5, 1.5 * PI, 0.5 * PI, true);
 	ctx.fill();
 	ctx.fillRect(257 + 18.5, 147.5 + 36.25, expWidth, 37.5);
@@ -157,10 +167,11 @@ module.exports.onLoad = async function () {
     const { downloadFile } = global.utils;
 	const path = resolve(__dirname, "cache", "customrank");
     if (!existsSync(path)) mkdirSync(path, { recursive: true });
-
+//hàm dowload file có sẵn bao gồm font chữ hoặc pang rankcard (có thể thay)
     if (!existsSync(resolve(__dirname, 'cache', 'regular-font.ttf'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/fonts/regular-font.ttf", resolve(__dirname, 'cache', 'regular-font.ttf'));
 	if (!existsSync(resolve(__dirname, 'cache', 'bold-font.ttf'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/fonts/bold-font.ttf", resolve(__dirname, 'cache', 'bold-font.ttf'));
 	if (!existsSync(resolve(__dirname, 'cache', 'rankcard.png'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/rank_card/rankcard.png", resolve(__dirname, 'cache', 'rankcard.png'));
+
 }
 
 module.exports.run = async ({ event, api, args, Currencies, Users }) => {
@@ -181,7 +192,7 @@ module.exports.run = async ({ event, api, args, Currencies, Users }) => {
 		const point = await this.getInfo(event.senderID, Currencies);
 		const timeStart = Date.now();
 		let pathRankCard = await this.makeRankCard({ id: event.senderID, name, rank, ...point })
-		return api.sendMessage({body: `chào em`, attachment: fs.createReadStream(pathRankCard, {'highWaterMark': 128 * 1024}) }, event.threadID, () => fs.unlinkSync(pathRankCard), event.messageID);
+		return api.sendMessage({body: `${Date.now() - timeStart}`, attachment: fs.createReadStream(pathRankCard, {'highWaterMark': 128 * 1024}) }, event.threadID, () => fs.unlinkSync(pathRankCard), event.messageID);
 	}
 	if (mention.length == 1) {
 		const rank = dataAll.findIndex(item => parseInt(item.userID) == parseInt(mention[0])) + 1;

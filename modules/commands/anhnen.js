@@ -4,7 +4,7 @@
 	hasPermssion: 0,
 	credits: "VanHung",
 	description: "Gợi ý cho bạn ảnh nền",
-	commandCategory: "Phương tiện",
+	commandCategory: "Hình ảnh",
 	usages: "anhnen",
 	cooldowns: 60
 };

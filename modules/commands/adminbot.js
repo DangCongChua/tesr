@@ -1,10 +1,10 @@
-module.exports.config = {
+﻿﻿module.exports.config = {
   name: "adminbot",
   version: "1.0.0",
   hasPermssion: 0,
   credits: "Jukie~",
   description: "Kiểm tra thông tin admin bot.",
-  commandCategory: "INFO ADMINBOT",
+  commandCategory: "Thông tin admin bot",
   usages: "",
   cooldowns: 5,
   dependencies: {
@@ -38,6 +38,17 @@ const fs = global.nodemodule["fs-extra"];
 "https://media.giphy.com/media/1gOykJJoWktIkf2yuO/giphy.gif",
 "https://4.bp.blogspot.com/-yAExPAr7JeA/WDaBRVuJwxI/AAAAAAALb7I/Dbvda0KD5uECF3_SBjsvkl2_mqP9_BweQCLcB/s1600/AS000834_17.gif",
   ];
-  var callback = () => api.sendMessage({body:"\n» Info người vận hành bot «\n👤 Tên: Huỳnh Đăng\n🌐 UID: 100005770388324\n📱 FB: https://m.facebook.com/IamDangDepTroai.Info\n👦 Giới tính: Nam\n🎂 SN: 17/02/2004\n💑 Mối quan hệ: Đang tìm hiểu \n\n----HuynhDang----",attachment: fs.createReadStream(__dirname + "/cache/5.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/5.jpg")); 
+  var callback = () => api.sendMessage({body:`\n» Info người vận hành bot «\n👤FB: Huỳnh Đăng\n- UID: 100005770388324\n- Inbox: m.me/IamHuynhDangDepTroai.Info\n- Giới tính: Nam 
+- Mối quan hệ: Đang tìm hiểu
+- SN: 17/2
+------------
+💳MB: đã bẻ thẻ
+💳VIB: đã bẻ thẻ
+📲MoMo: đã bẻ thẻ
+---------------------
+Web INFO:
+https://huynhdanginfo.tk/
+
+----huynhdang----`,attachment: fs.createReadStream(__dirname + "/cache/5.jpg")}, event.threadID, () => fs.unlinkSync(__dirname + "/cache/5.jpg")); 
       return request(encodeURI(link[Math.floor(Math.random() * link.length)])).pipe(fs.createWriteStream(__dirname+"/cache/5.jpg")).on("close",() => callback());
    };
